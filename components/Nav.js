@@ -2,8 +2,8 @@ import requests from "../utills/requests";
 
 function Nav() {
   return (
-    <nav>
-      <div className="flex px-10 sm:px-20 text-2xl whitespace-nowrap space-x-10 sm:space-x-20 overflow-scroll">
+    <nav className="relative">
+      <div className="flex px-10 sm:px-20 text-2xl whitespace-nowrap space-x-10 sm:space-x-20 overflow-scroll scrollbar-hide">
         {Object.entries(requests).map(([key, { title, url }]) => (
           <h2
             key={key}
@@ -13,6 +13,7 @@ function Nav() {
           </h2>
         ))}
       </div>
+      <div className="absolute top-0 right-0 bg-gradient-to-l from-[#06202A] h-10 w-1/12" />
     </nav>
   );
 }
