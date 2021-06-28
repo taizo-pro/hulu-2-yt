@@ -1,4 +1,4 @@
-import requests from "../utills/requests";
+import requests from "../utils/requests";
 
 function Nav() {
   return (
