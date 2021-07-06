@@ -1,8 +1,13 @@
 import requests from "../utils/requests";
-import { userRouter } from "next/router"
+import { useRouter } from 'next/router'
 
 function Nav() {
-  const router = userRouter();
+  const router = useRouter();
+
+  // const handleClick = e => {
+  //   e.preventDefault();
+  //   router.push(`/?genre=${key}`);
+  // };
 
   return (
     <nav className="relative">
