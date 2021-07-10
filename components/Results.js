@@ -7,7 +7,6 @@ function Results({ results }) {
       {results.map((result) => (
         <Thumbnail key={result.id} result={result} />
       ))}
-    {/* </div> */}
     </div>
   );
 }
