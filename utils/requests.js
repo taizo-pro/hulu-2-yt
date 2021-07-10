@@ -1,4 +1,5 @@
 const API_KEY = process.env.API_KEY;
+console.log("🚀 ~ file: requests.js ~ line 2 ~ API_KEY", API_KEY)
 
 // APIエンドポイント
 export default {
