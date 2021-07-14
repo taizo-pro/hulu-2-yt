@@ -1,0 +1,4 @@
+selenium
+datetime
+pathlib
+webdriver-manager==3.4.0
