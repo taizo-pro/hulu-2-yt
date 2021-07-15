@@ -40,8 +40,6 @@ def download_stock_csv(code_range, save_dir):
         # TODO: 都道府県をenumにして、番号で変更できるようにしたい。
         url = 'https://weathernews.jp/s/ski/area/gunma.html'.format(code)
         driver.get(url)
-        print("code")
-        print(code)
 
         # ページ内の何個目のリンクか
         product_index_in_page = 0
