@@ -4,13 +4,17 @@ from datetime import datetime, timedelta, timezone
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 # 例外処理用のlibraryをimport
 from selenium.common.exceptions import NoSuchElementException
-# from rakusai import timer
-# from rakusai import chromedriver
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
 import pandas as pd
 from pathlib import Path
 import re
+import platform
 
 # デバッグ中はTrueにする
 is_debug = False
@@ -31,7 +35,7 @@ print(formatDateTime)
 # スクリプト開始時間
 start = time.time()
 
-driver = chromedriver.init(is_debug)
+driver = webdriver.Chrome(ChromeDriverManager().install())
 time.sleep(random.randint(1, 2) / 10)
 
 
@@ -49,7 +53,8 @@ def download_stock_csv(code_range, save_dir):
         area_sum = driver.find_element_by_xpath(
                     "/html/body/div[1]/div[3]/article/section[1]/h1/span").text
 
-        while product_index_in_page < area_sum:
+        # while product_index_in_page < int(area_sum):
+        while product_index_in_page < 3:
             try:
                 # 詳細ページを別タブで開く
                 detail_link = driver.find_element_by_xpath("/html/body/div[1]/div[3]/article/section[1]/div/ul/li[%s]/a" % (detail_link_index))
@@ -82,30 +87,34 @@ def download_stock_csv(code_range, save_dir):
                 driver.switch_to.window(handle_new[0])
 
 
-
                 # スキー場名
                 area_name = driver.find_element_by_xpath(
                     "/html/body/div[1]/div[2]/article[1]/section/div[1]/h1").text
+                print("area_name: " + area_name)
 
                 # 積雪量
                 snow_volume = driver.find_element_by_xpath(
                     "/html/body/div[1]/div[2]/article[1]/section/div[1]/div/div[1]/div[2]/div/div/p/span").text
+                print("snow_volume: " + snow_volume)
 
                 # コース数
                 course = driver.find_element_by_xpath(
                     "/html/body/div[1]/div[2]/article[1]/section/div[6]/div[3]/div/dl[1]/div[2]/dd").text
+                print("course: " + course)
 
                 # 住所
-                address = driver.find_element_by_xpath(
-                    "/html/body/div[1]/div[2]/article[1]/section/div[6]/div[3]/div/dl[2]/div[5]/dd)").text
+                address = driver.find_element_by_id("addr").text
+                print("address: " + address)
 
                 # リフト料金
                 lift_charges = driver.find_element_by_xpath(
                     "/html/body/div[1]/div[2]/article[1]/section/div[6]/div[3]/div/dl[1]/div[8]/dd").text
+                print("lift_charges: " + lift_charges)
 
                 # 営業時間
                 business_hours = driver.find_element_by_xpath(
                     "/html/body/div[1]/div[2]/article[1]/section/div[6]/div[3]/div/dl[2]/div[8]/dd").text
+                print("business_hours: " + business_hours)
 
                 original_page_url = url
                 page_id = code
@@ -125,18 +134,15 @@ def download_stock_csv(code_range, save_dir):
 
             except NoSuchElementException as e:
                 print(e)
-                # pass
-            # time.sleep(random.randint(1, 2))
             time.sleep(1)
 
 
 import os
 
-download_stock_csv(range(30, 1000), os.getcwd())
+download_stock_csv(range(1, 2), os.getcwd())
 
 # ブラウザーを終了
 driver.quit()
-# driver.close()
 
 path_root = Path('').resolve()
 path_output = path_root / 'output'
