@@ -15,6 +15,8 @@ import pandas as pd
 from pathlib import Path
 import re
 import platform
+import json
+import csv
 
 # デバッグ中はTrueにする
 is_debug = False
@@ -155,6 +157,17 @@ colums = ["site_name", "page_id", "area_name", "snow_volume", "course", "address
 FILENAME = 'ski_slope_map'
 pd.DataFrame(list_output, columns=colums).to_csv(path_output / f'{FILENAME}.csv', index=False)
 
-timer.print_execution_time(start)
+json_list = []
+
+# CSVファイル読み込み
+with open(f'{path_output}/{FILENAME}.csv', 'r') as f:
+    for row in csv.DictReader(f):
+        json_list.append(row)
+
+print("A")
+
+# JSONファイルへの書き込み
+with open(f'{path_output}/{FILENAME}.json', 'w') as f:
+    json.dump(json_list, f, ensure_ascii=False)
 
 exit()
