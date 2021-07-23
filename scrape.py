@@ -150,12 +150,12 @@ path_root = Path('').resolve()
 path_output = path_root / 'output'
 os.makedirs(path_output, exist_ok=True)
 
-colums = ["site_name", "page_id", "area_name", "snow_volume", "course", "address", "lift_charges", "business_hours", "original_page_url"]
+columns = ["site_name", "page_id", "area_name", "snow_volume", "course", "address", "lift_charges", "business_hours", "original_page_url"]
 # CSVとして保存
 # TODO: json形式で取得したい
 # OUTPUT
 FILENAME = 'ski_slope_map'
-pd.DataFrame(list_output, columns=colums).to_csv(path_output / f'{FILENAME}.csv', index=False)
+pd.DataFrame(list_output, columns=columns).to_csv(path_output / f'{FILENAME}.csv', index=False)
 
 json_list = []
 
