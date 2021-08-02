@@ -5,6 +5,10 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import Results from "../components/Results";
 import requests from "../utils/requests";
+import Data from "../output/ski_slope_map.json"
+
+// TODO: JSONを配列で回す
+console.log("🚀 ~ file: index.js ~ line 11 ~ Data", Data[0].site_name)
 
 export default function Home({ results }) {
   return (
