@@ -7,8 +7,6 @@ import Results from "../components/Results";
 import requests from "../utils/requests";
 import Data from "../output/ski_slope_map.json"
 
-// TODO: JSONを配列で回す
-console.log("🚀 ~ file: index.js ~ line 11 ~ Data", Data[0].site_name)
 
 export default function Home({ results }) {
   return (
@@ -32,17 +30,10 @@ export default function Home({ results }) {
 
 // 先にサーバーサイドレンダリングが走る
 export async function getServerSideProps(context) {
-  const genre = context.query.genre;
-
-  const request = await fetch(
-    `https://api.themoviedb.org/3${
-      requests[genre]?.url || requests.fetchTrending.url
-    }`
-  ).then((res) => res.json());
 
   return {
     props: {
-      results: request.results,
+      results: Data,
     },
   };
 }
