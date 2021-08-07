@@ -3,7 +3,7 @@ import Thumbnail from "./Thumbnail"
 function Results({ results }) {
   console.log("🚀 ~ file: Results.js ~ line 4 ~ Results ~ results", results)
   return (
-    <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
+    <div className="px-5 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
       <ul>
         {results.map(info => (
           <li key={info.id}>
