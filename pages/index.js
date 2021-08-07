@@ -10,7 +10,7 @@ import Data from "../output/ski_slope_map.json"
 
 export default function Home({ results }) {
   return (
-    <div>
+    <div className="bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300">
       <Head>
         <title>スノマップ</title>
         <link rel="icon" href="/favicon.ico" />
