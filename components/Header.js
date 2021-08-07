@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 import HeaderItem from "./HeaderItem";
-import Logo from "../public/1_Primary_logo_on_transparent_284x67.png";
+import Logo from "../public/snomap.png";
 
 function Header() {
   return (
